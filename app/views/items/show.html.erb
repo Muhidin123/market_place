@@ -25,5 +25,10 @@
   <%= @item.user.first_name %>
 </p>
 
-<%= link_to 'Edit', edit_item_path(@item) %> |
-<%= link_to 'Back', items_path %>
+<%= link_to 'Edit', edit_item_path(@item), class: "btn btn-outline-success"%> 
+<%= link_to 'Back', items_path ,class: "btn btn-outline-success" %>
+
+<%if @item.photo.attached?%>
+  <%= image_tag(@item.photo) %>
+<% end %> 
+

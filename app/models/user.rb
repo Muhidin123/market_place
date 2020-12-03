@@ -7,4 +7,10 @@ class User < ApplicationRecord
   has_many :items
   has_many :favorites
   has_many :purchased_items, through: :transactions, source: :item
+
+  def full_name
+    self.first_name + ' ' + self.last_name
+  end
+
+  
 end

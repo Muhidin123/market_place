@@ -14,7 +14,6 @@ class ItemsController < ApplicationController
 
   # GET /items/new
   def new
-    @item = Item.new
   end
 
   # GET /items/1/edit
@@ -67,8 +66,17 @@ class ItemsController < ApplicationController
       @item = Item.find(params[:id])
     end
 
+
+    def photo
+      @item.photo.attach(params[:photo])
+    end
+
+
     # Only allow a list of trusted parameters through.
     def item_params
-      params.require(:item).permit(:title, :description, :category, :price, :user_id)
+      params.require(:item).permit(:title, :description, :category, :price, :user_id, :photo)
     end
+
+
+
 end
