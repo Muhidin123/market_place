@@ -9,34 +9,37 @@
         <li class="nav-item">
           <%= link_to "Home", root_path, class: 'nav-link'%>
         </li>
+        <%if !user_signed_in?%>
         <li class="nav-item">
           <%= link_to "Sign up", new_user_registration_path, class: "nav-link" %>
         </li>
-        <li class="nav-item">
-          <%= link_to "Sign in", new_user_session_path, class: "nav-link" %>
-        </li>
-       <%if user_signed_in?%> 
+       <%else%> 
             <li class="nav-item">
-            <%= link_to "Edit Profile", edit_user_registration_path, class: "nav-link" %>
+            <%= link_to "All items", items_path, class: "nav-link" %>
             </li>
             <li class="nav-item">
-            <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "btn btn-danger" %>
+              <%= link_to  "Create a new Listing", new_item_path, class:"nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Favorites" , favorites_path, class:"nav-link"  %>
             </li>
             <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
-                Dropdown
+            <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-grid-3x2-gap-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V4zM1 9a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V9zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V9zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V9z"/>
+          </svg>
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <%= link_to  "All items", items_path, class:"dropdown-item" %>
-            <%= link_to  "New Item", new_item_path, class:"dropdown-item" %>
+            <%= link_to  "Edit Account",edit_user_registration_path , class:"dropdown-item" %>
+            <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "btn btn-danger" %>
             </ul>
             </li>
         </ul>
-      <%end%>
       <form class="d-flex">
         <input class="form-control mr-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
+      <%end%>
     </div>
   </div>
 </nav>
