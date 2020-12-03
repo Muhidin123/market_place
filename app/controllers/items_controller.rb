@@ -10,10 +10,12 @@ class ItemsController < ApplicationController
   # GET /items/1
   # GET /items/1.json
   def show
+
   end
 
   # GET /items/new
   def new
+    @item = Item.new
   end
 
   # GET /items/1/edit
@@ -67,9 +69,9 @@ class ItemsController < ApplicationController
     end
 
 
-    def photo
-      @item.photo.attach(params[:photo])
-    end
+    # def photo
+    #   @item.photo.attach(params[:photo])
+    # end
 
 
     # Only allow a list of trusted parameters through.
