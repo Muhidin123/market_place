@@ -19,22 +19,18 @@
 </p>
 
 <p>
-  <strong>User:</strong>
+  <strong>Seller:</strong>
   <%= @item.user.first_name %>
 </p>
 
+<p>
+  <strong>Seller's Email:</strong>
+  <%= @item.user.email %>
+</p>
+
+<% if @item.user_id == current_user.id %>
 <%= link_to 'Edit', edit_item_path(@item), class: "btn btn-outline-success"%> 
 <%= link_to 'Back', items_path ,class: "btn btn-outline-success" %>
-
-
-
-
-
-<div class="card" style="width: 18rem;">
-  <img src="..." class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">All item</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-</div>
+<%else%>
+<%= link_to 'Back', items_path ,class: "btn btn-outline-success" %>
+<%end%>

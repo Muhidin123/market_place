@@ -1,1 +1,18 @@
-<h1>Hello world</h1>
+<h1>MarketPlace</h1>
+
+<% if @items != nil%>
+<% @items.each do |item| %>
+    <div class= "row">
+    <div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="..." alt=>
+    <div class="card-body">
+        <h4 class="card-title"><%= item.title %></h4>
+        <h6 class="card-number">$<%= item.price %></h6>
+        <p class="card-title">Category: <%= item.category %></p>
+        <p class="card-text"><td><%= item.description %></td></p>
+        <%= link_to "View", item_path(item), :class => "btn btn-primary"%>
+        <%= link_to Favorite, new_favorite_path, :class => "btn btn-primary"%>
+    </div>
+    </div> 
+    <%end%>
+<% end %>

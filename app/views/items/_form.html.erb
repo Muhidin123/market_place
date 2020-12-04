@@ -31,9 +31,8 @@
     <%= form.number_field :price, class: 'form-control' %>
   </div>
 
-  <div class="mb-3">
-    <%= form.label :user %>
-    <%= form.collection_select :user_id, User.all, :id, :first_name, class: 'form-control'%>
+  <div class="hidden">
+    <%= form.hidden_field :user_id, value: current_user.id %>
   </div>
 
   <div class="mb-3">
@@ -42,5 +41,5 @@
   </div>
 
   
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-success">Submit</button>
 <% end %>
