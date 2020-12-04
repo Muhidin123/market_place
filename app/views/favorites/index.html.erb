@@ -1,4 +1,6 @@
-<p id="notice"><%= notice %></p>
+<%
+=begin%>
+ <p id="notice"><%= notice %></p>
 
 <h1>Favorites</h1>
 
@@ -16,6 +18,7 @@
       <tr>
         <td><%= favorite.user_id %></td>
         <td><%= favorite.item_id %></td>
+
         <td><%= link_to 'Show', favorite %></td>
         <td><%= link_to 'Edit', edit_favorite_path(favorite) %></td>
         <td><%= link_to 'Destroy', favorite, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -24,6 +27,29 @@
   </tbody>
 </table>
 
-<br>
+<br> 
+<%
+=end%>
 
-<%= link_to 'New Favorite', new_favorite_path %>
+
+
+<%if @user_favorites != nil && !@user_favorites.empty?%>
+  <%@user_favorites.each do |favorite| %>
+    <%item = favorite.item%>
+      <div class= "row">
+      <div class="card" style="width: 18rem;">
+      <img class="card-img-top" src="..." alt=>
+      <div class="card-body">
+          <h4 class="card-title"><%=item.title%></h4>
+          <h6 class="card-number">$<%= item.price %></h6>
+          <p class="card-title">Category: <%= item.category %></p>
+          <p class="card-text"><td><%= item.description %></td></p>
+          <%= link_to "View", item_path(item), :class => "btn btn-primary"%>
+          <%= button_to "Unfavor", unfavor_path(favorite), method: :delete ,class: "btn btn-danger"%>
+      </div>
+      </div>
+      <% end %>
+      <%else%>
+      <p> No Favorites </p>  
+<% end %>
+
