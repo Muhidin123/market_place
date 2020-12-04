@@ -5,6 +5,7 @@ class FavoritesController < ApplicationController
   # GET /favorites.json
   def index
     @favorites = Favorite.all
+    @user_favorites = Favorite.where(user_id: current_user.id)
   end
 
   # GET /favorites/1
@@ -60,6 +61,14 @@ class FavoritesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
+  def add_favorite
+    @favorite = Favorite.create(user_id: params[:user_id], item_id: params[:item_id])
+
+    redirect_to :root
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
