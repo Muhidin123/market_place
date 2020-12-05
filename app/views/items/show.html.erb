@@ -64,6 +64,7 @@
         <%= link_to 'Back', items_path ,class: "btn btn-outline-success" %>
     <%else%>
         <%= link_to 'Back', items_path ,class: "btn btn-outline-success" %>
+         <%= button_to "Favorite", add_favorite_path, method: :post ,:class => "btn btn-primary", params: { user_id: current_user.id ,item_id: @item.id }%>
     <%end%>
   </div>
 </div>
