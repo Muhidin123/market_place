@@ -16,6 +16,7 @@ class ItemsController < ApplicationController
   # GET /items/new
   def new
     @item = Item.new
+    @categories = display_categories
   end
 
   # GET /items/1/edit
@@ -79,6 +80,24 @@ class ItemsController < ApplicationController
       params.require(:item).permit(:title, :description, :category, :price, :user_id, :photo)
     end
 
+      def display_categories
+        @categories = [
+          "Electronics & Media",
+          "Home & Garden",
+          "Clothing, Shoes, & Accessories",
+          "Baby & Kids",
+          "Vehicles",
+          "Toy, Games, & Hobbies",
+          "Sports & Outdoors",
+          "Collectibles & Art",
+          "Pet Supplies",
+          "Health & Beauty",
+          "Wedding",
+          "Business Equipment",
+          "Tickets",
+          "General"
+        ]
+      end
 
 
 end

@@ -1,26 +1,47 @@
-<h1>MarketPlace</h1>
+<!doctype html>
+<html lang="en">
+  <head>
 
-<% if @items%>
-<% @items.each do |item| %>
-<div class="card-deck">
+  </head>
 
-    
-    <div class="card">
-    <%fav = Favorite.find_by(user_id: current_user.id, item_id: item.id)%>
-        <div class="card-body">
-            <h4 class="card-title"><%= item.title %></h4>
-            <h6 class="card-number">$<%= item.price %></h6>
-            <p class="card-title">Category: <%= item.category %></p>
-            <p class="card-text"><td><%= item.description %></td></p>
-            <%= link_to "View", item_path(item), :class => "btn btn-primary"%>
-            <%if Favorite.where(user_id: current_user.id, item_id: item.id) == [] %>
-                <%= button_to "Favorite", add_favorite_path, method: :post ,:class => "btn btn-primary", params: { user_id: current_user.id ,item_id: item.id }%>
-            <% else %>
-                <%= button_to "Unfavor", unfavor_path(Favorite.where(user_id: current_user.id, item_id: item.id).ids), method: :delete ,class: "btn btn-danger"%>
-            <% end %>
+<body>
+<h1>MarketPlace</h1><br>
+
+
+    <% if @items != nil%>
+    <% @items.each do |item| %>
+
+  <div class="card">
+        <div class="row no-gutters">
+            <div class="col-auto">
+                <%if item.photo.attached?%>
+                <%=image_tag(item.photo, size: '200')%>
+                
+                <% end %>
+            </div>
+            <div class="col">
+                <div class="card-block px-2"><br>
+                    <h3 class="card-title"><%= item.title %></h3>
+                    <h4 class="card-number">$<%= item.price %></h4>
+                    <p class="card-text">Description: <%=item.description%></p>
+                     <div class="btn-group">
+                <%= button_to "View", item_path(item), method: :get, :class => "btn btn-primary mr-2 rounded"%>
+                <%= button_to "Favorite", add_favorite_path, method: :post ,:class => "btn btn-primary mr-2 rounded", params: { user_id: current_user.id ,item_id: item.id }%>
+                <%= button_to "Buy", new_transaction_path, method: :post ,:class => "btn btn-success mr-2 rounded", params: { user_id: current_user.id ,item_id: item.id }%>
+                </div>
+                </div>
+            </div>
         </div>
-    </div>
+        <div class="card-footer w-100 text-muted">
+            <%= item.category%>, <%= item.user.location%>
+        </div>
+  </div>
+  <br>
+       <%end%>
     <%end%>
-<% end %>
+
+
+</body>
+</html>
 
 
