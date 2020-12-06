@@ -10,7 +10,16 @@ class TransactionsController < ApplicationController
   # GET /transactions/1
   # GET /transactions/1.json
   def show
+    @item = Item.find(params[:id])
+
+    user = Transaction.all.select {|transactions| transactions.user_id = current_user.id}
+    if user
+      @average_rating  = user.map {|transaction| transaction.rating}.inject(:+) / user.length
+    else
+      @average_rating = 0
+    end
   end
+  
 
   # GET /transactions/new
   def new
