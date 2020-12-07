@@ -1,5 +1,48 @@
-<h1>New Transaction</h1>
+<div class="card" style="width: 18rem;">
+  
+  <div class="card-body" data-toggle="modal">
+  <%if @item.photo.attached?%>
+    <%=image_tag @item.photo%>
+  <% end %>
+    <h5 class="card-title"><%= @item.title %></h5>
+    <p class="card-text"><%=@item.description%></p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Price: $<%=@item.price%></li>
+    <li class="list-group-item">Category: <%=@item.category%></li>
+    <li class="list-group-item">Seller: <%= @item.user.first_name%></li>
+  </ul>
+  <div class="card-body">
 
-<%= render 'form', transaction: @transaction %>
 
-<%= link_to 'Back', transactions_path %>
+    <% if @item.user_id == current_user.id %>
+        <%= link_to 'Edit', edit_item_path(@item), class: "btn btn-outline-success"%> 
+        <%= link_to 'Back', items_path ,class: "btn btn-outline-success" %>
+    <%else%>
+
+        <%= link_to 'Back', root_path ,class: "btn btn-outline-success" %>
+    <%end%>
+     <%if Favorite.where(user_id: current_user.id, item_id: @item.id) == [] %>
+        <%= button_to "Favorite", add_favorite_path, method: :post ,:class => "btn btn-primary", params: { user_id: current_user.id ,item_id: @item.id }%>
+    <% else %>
+        <%= button_to "Unfavor", unfavor_path(Favorite.where(user_id: current_user.id, item_id: @item.id).ids), method: :delete ,class: "btn btn-danger"%>
+    <% end %>
+  </div>
+</div>
+
+
+
+
+<%= form_for @transaction do |f| %>
+<div class="form-group"><br>
+  <%= f.text_area :review, class: "form-control", placeholder: "Write a review for this item and a seller"%>
+</div>
+  <div class="form-group"><br>
+  <%= f.number_field :rating, in: 1.0..5.0, step: 0.5 , class: "form-control", placeholder: "Rate this seller (0 - 5)"%>
+  </div>
+  <%= f.hidden_field :user_id, value: current_user.id%>
+  <%= f.hidden_field :item_id, value: @item.id%>
+<br / >
+  <%= f.submit "Buy this Item" , class: "btn btn-primary"%>
+
+<% end %>

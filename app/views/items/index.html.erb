@@ -34,6 +34,40 @@
 </table>
 
 <br>
+<h1>Bought Items</h1>
+
+<table class="table table-hover table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Title</th>
+      <th scope="col">Description</th>
+      <th scope="col">Category</th>
+      <th scope="col">Price</th>
+      <th colspan="5"></th>
+      
+    </tr>
+  </thead>
+  <tbody>
+  <%i = 1%>
+    
+        <%@bought_items.each do |item|%>
+      <th scope="row"><%= "#{i}"%></th>
+        <td><%= item.title %></td>
+        <td><%= item.description %></td>
+        <td><%= item.category %></td>
+        <td>$<%= item.price %></td>
+        <td><%= link_to 'Show', item, class: 'btn btn-primary' %></td>
+        <td><%= link_to 'Edit', edit_item_path(item), class: 'btn btn-primary' %></td>
+        <td><%= button_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"%></td>
+      </tr>
+        <%i += 1%>
+  <%end%>
+  </tbody>
+</table>
+
+<br>
+
 
 <%= link_to 'List Another Item', new_item_path ,class: 'btn btn-success'%>
 
