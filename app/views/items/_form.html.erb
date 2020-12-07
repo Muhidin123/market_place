@@ -1,7 +1,7 @@
 <%= form_with(model: item, local: true) do |form| %>
   <% if item.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(item.errors.count, "error") %> prohibited this item from being saved:</h2>
+      <h4><%= pluralize(item.errors.count, "error") %> prohibited this item from being saved:</h4>
 
       <ul>
         <% item.errors.full_messages.each do |message| %>
@@ -12,34 +12,33 @@
   <% end %>
 
   <div class="mb-3">
-    <%= form.label :title, class: 'form-label' %>
-    <%= form.text_field :title, class: 'form-control'  %>
+   <br>
+    <%= form.text_field :title, class: 'form-control', placeholder: "Title"%>
   </div>
 
   <div class="mb-3">
-    <%= form.label :description ,class: "form-label" %>
-    <%= form.text_field :description, class: 'form-control' %>
+
+    <%= form.text_field :description, class: 'form-control', placeholder: "Description" %>
   </div>
 
   <div class="mb-3">
-    <%= form.label :price ,class: "form-label" %>
-    <%= form.number_field :price, class: 'form-control' %>
+    <%= form.number_field :price, class: 'form-control', placeholder: "Price" %>
   </div>
 
- <div class="mb-3">
-    <%= form.number_field :user_id, value: current_user.id, type: "hidden"%>
+  <div class="hidden">
+    <%= form.hidden_field :user_id, value: current_user.id %>
   </div>
   
   <div class="mb-3">
     <%= form.label :category,  class: 'form-label' %>
-    <%= form.select :category, @categories %>
+    <%= form.select :category, @categories%>  
   </div>
 
   <div class="mb-3">
-    <%= form.label "Photos", class: "form-label"  %>
-    <%= form.file_field :photo, class: 'form-control'%>
+    <%= form.label "Add a photo", class: "form-label" %>
+    <%= form.file_field :photos, class: 'form-control'%>
   </div>
 
   
-    <button type="submit" class="btn btn-success">Submit</button>
+    <button type="submit" class="btn btn-success">Create New Item</button>
 <% end %>

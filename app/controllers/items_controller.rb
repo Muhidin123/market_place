@@ -1,22 +1,23 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
-
+  before_action :display_categories
+  
   # GET /items
   # GET /items.json
   def index
+    @bought_items = Transaction.where(user_id: current_user.id).map {|trans| trans.item}
     @items = Item.where(user_id: current_user.id)
   end
 
   # GET /items/1
   # GET /items/1.json
   def show
-
   end
 
   # GET /items/new
   def new
     @item = Item.new
-    @categories = display_categories
+
   end
 
   # GET /items/1/edit
@@ -26,15 +27,17 @@ class ItemsController < ApplicationController
   # POST /items
   # POST /items.json
   def create
+    @categories = display_categories
     @item = Item.new(item_params)
 
+    #byebug
     respond_to do |format|
       if @item.save
         format.html { redirect_to @item, notice: 'Item was successfully created.' }
-        format.json { render :show, status: :created, location: @item }
+
       else
-        format.html { render :new }
-        format.json { render json: @item.errors, status: :unprocessable_entity }
+        format.html { render :new}
+
       end
     end
   end
@@ -63,16 +66,13 @@ class ItemsController < ApplicationController
     end
   end
 
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_item
       @item = Item.find(params[:id])
     end
-
-
-    # def photo
-    #   @item.photo.attach(params[:photo])
-    # end
 
 
     # Only allow a list of trusted parameters through.

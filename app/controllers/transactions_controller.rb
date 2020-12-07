@@ -1,5 +1,5 @@
 class TransactionsController < ApplicationController
-  before_action :set_transaction, only: [:show, :edit, :update, :destroy]
+  before_action :set_transaction, only: [:edit, :update, :destroy]
 
   # GET /transactions
   # GET /transactions.json
@@ -10,11 +10,15 @@ class TransactionsController < ApplicationController
   # GET /transactions/1
   # GET /transactions/1.json
   def show
+    @item = Item.find(params[:id])
   end
+  
 
   # GET /transactions/new
   def new
     @transaction = Transaction.new
+    
+    @item = Item.find(params[:item_id])
   end
 
   # GET /transactions/1/edit
@@ -24,14 +28,15 @@ class TransactionsController < ApplicationController
   # POST /transactions
   # POST /transactions.json
   def create
+    @item = Item.find(params[:transaction][:item_id])
     @transaction = Transaction.new(transaction_params)
 
     respond_to do |format|
       if @transaction.save
-        format.html { redirect_to @transaction, notice: 'Transaction was successfully created.' }
+        format.html { redirect_to :root, notice: 'Transaction was successfully created.' }
         format.json { render :show, status: :created, location: @transaction }
       else
-        format.html { render :new }
+        format.html { render :new}
         format.json { render json: @transaction.errors, status: :unprocessable_entity }
       end
     end
@@ -59,6 +64,13 @@ class TransactionsController < ApplicationController
       format.html { redirect_to transactions_url, notice: 'Transaction was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def new_transaction
+    @transaction = Transaction.new
+    @transaction = Transaction.create(user_id: params[:user_id], item_id: params[:item_id], review: params[:review],rating: params[:rating])
+
+    redirect_to :root
   end
 
   private
