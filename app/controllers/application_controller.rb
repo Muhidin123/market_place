@@ -8,8 +8,8 @@ class ApplicationController < ActionController::Base
         :address => 'smtp.gmail.com',
         :domain => 'mail.google.com',
         :port => 587,
-        :user_name => 'muhidinhukic11@gmail.com',
-        :password => 'Arhitekta1',
+        :user_name => 'm.place.flatiron@gmail.com',
+        :password => 'marketplace1.',
         :authentication => 'login',
         :enable_starttls_auto => true
       
