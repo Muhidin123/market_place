@@ -16,7 +16,8 @@
             <div class="col-auto">
                 <%if item.photo.attached?%>
                 <%=image_tag(item.photo, size: '200')%>
-                
+                <%else%>
+                <%=image_tag('assets/images/image.png', size: '200')%>
                 <% end %>
             </div>
             <div class="col">
