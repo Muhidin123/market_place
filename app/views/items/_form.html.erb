@@ -31,11 +31,11 @@
   
   <div class="mb-3">
     <%= form.label :category,  class: 'form-label' %>
-    <%= form.select :category, @categories, class: "custom-select custom-select-lg mb-3", placeholder: "Category" %>
+    <%= form.select :category, @categories%>  
   </div>
 
   <div class="mb-3">
-    <%= form.label "Add a photo", class: "form-label"  %>
+    <%= form.label "Add a photo", class: "form-label" %>
     <%= form.file_field :photos, class: 'form-control'%>
   </div>
 

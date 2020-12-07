@@ -17,7 +17,6 @@
   <tbody>
   <%i = 1%>
     <% @items.each do |item| %>
-        <%if !Transaction.all.find_by(item_id: item.id)%>
       <th scope="row"><%= "#{i}"%></th>
         <td><%= item.title %></td>
         <td><%= item.description %></td>
@@ -28,7 +27,6 @@
         <td><%= button_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"%></td>
       </tr>
       <%i += 1%>
-    <% end %>
     <% end %>
   </tbody>
 </table>
@@ -58,8 +56,8 @@
         <td><%= item.category %></td>
         <td>$<%= item.price %></td>
         <td><%= link_to 'Show', item, class: 'btn btn-primary' %></td>
-        <td><%= link_to 'Edit', edit_item_path(item), class: 'btn btn-primary' %></td>
-        <td><%= button_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"%></td>
+
+
       </tr>
         <%i += 1%>
   <%end%>

@@ -28,6 +28,7 @@ class TransactionsController < ApplicationController
   # POST /transactions
   # POST /transactions.json
   def create
+    @item = Item.find(params[:transaction][:item_id])
     @transaction = Transaction.new(transaction_params)
 
     respond_to do |format|
@@ -35,7 +36,7 @@ class TransactionsController < ApplicationController
         format.html { redirect_to :root, notice: 'Transaction was successfully created.' }
         format.json { render :show, status: :created, location: @transaction }
       else
-        format.html { render :show }
+        format.html { render :new}
         format.json { render json: @transaction.errors, status: :unprocessable_entity }
       end
     end

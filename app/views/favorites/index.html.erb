@@ -19,7 +19,8 @@
                      <div class="btn-group">
                 <%= button_to "View", item_path(item), method: :get, :class => "btn btn-primary mr-2 rounded"%>
                 <%= button_to "Unfavor", unfavor_path(favorite), method: :delete ,class: "btn btn-danger mr-2 rounded"%>
-                <%= button_to "Buy", new_transaction_path, method: :post ,:class => "btn btn-success mr-2 rounded", params: { user_id: current_user.id ,item_id: item.id }%>
+
+                <%= link_to "Buy", new_transaction_path(:item_id => item.id),:class => "btn btn-success mr-2 rounded"%>
                 </div>
                 </div>
             </div>
