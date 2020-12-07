@@ -60,10 +60,8 @@
         <td><%= item.description %></td>
         <td><%= item.category %></td>
         <td>$<%= item.price %></td>
-        <td><%= item.price %></td>
+        <td><%= Transaction.find_by(item_id: item.id).created_at.strftime("%Y-%m-%d") %></td>
         <td><%= link_to 'View', item, class: 'btn btn-primary float-right' %></td>
-
-
       </tr>
         <%i += 1%>
   <%end%>

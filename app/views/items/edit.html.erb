@@ -1,3 +1,5 @@
+<h1> Editing Post - <%= @item.title %></h1>
+
 <%= form_with(model: @item, local: true) do |form| %>
   <% if @item.errors.any? %>
     <div id="error_explanation">
@@ -39,8 +41,8 @@
     <%= form.file_field :photo, class: 'form-control'%>
   </div>
 
-  
     <button type="submit" class="btn btn-success">Update Item</button>
+  
 <% end %>
-
+<br>
 <%= link_to 'Back', items_path, class: 'btn btn-primary' %>
