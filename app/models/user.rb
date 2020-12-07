@@ -7,10 +7,10 @@ class User < ApplicationRecord
   validates :location, presence: true
 
   
-  has_many :transactions
-  has_many :items
-  has_many :favorites
-  has_many :purchased_items, through: :transactions, source: :item
+  has_many :transactions, dependent: :destroy
+  has_many :items, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  has_many :purchased_items, through: :transactions, source: :item, dependent: :destroy
 
   def full_name
     self.first_name + ' ' + self.last_name

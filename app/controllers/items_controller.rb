@@ -30,10 +30,10 @@ class ItemsController < ApplicationController
     @categories = display_categories
     @item = Item.new(item_params)
 
-    #byebug
+  #byebug
     respond_to do |format|
       if @item.save
-        format.html { redirect_to @item, notice: 'Item was successfully created.' }
+        format.html { redirect_to @item, notice: 'Item was successfully posted.' }
 
       else
         format.html { render :new}
@@ -47,7 +47,7 @@ class ItemsController < ApplicationController
   def update
     respond_to do |format|
       if @item.update(item_params)
-        format.html { redirect_to @item, notice: 'Item was successfully updated.' }
+        format.html { redirect_to @item, notice: 'Posting was successfully updated.' }
         format.json { render :show, status: :ok, location: @item }
       else
         format.html { render :edit }
@@ -61,7 +61,7 @@ class ItemsController < ApplicationController
   def destroy
     @item.destroy
     respond_to do |format|
-      format.html { redirect_to items_url, notice: 'Item was successfully destroyed.' }
+      format.html { redirect_to items_url, notice: 'Item was successfully deleted.' }
       format.json { head :no_content }
     end
   end

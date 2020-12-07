@@ -5,13 +5,13 @@
 <table class="table table-hover table">
   <thead>
     <tr>
-      <th scope="col"  style="width: 5%">#</th>
-      <th scope="col" style="width: 19%">Title</th>
-      <th scope="col" style="width: 19%">Description</th>
-      <th scope="col" style="width: 19%">Category</th>
-      <th scope="col" style="width: 19%">Price</th>
-      <th colspan="5" style="width: 19%"></th>
-      
+      <th scope="col"  style="width: 4%">#</th>
+      <th scope="col" style="width: 16%">Title</th>
+      <th scope="col" style="width: 16%">Description</th>
+      <th scope="col" style="width: 16%">Category</th>
+      <th scope="col" style="width: 16%">Price</th>
+      <th scope="col" style="width: 16%">Posted On</th>
+      <th colspan="5" style="width: 16%"></th>
     </tr>
   </thead>
   <tbody>
@@ -22,6 +22,7 @@
         <td><%= item.description %></td>
         <td><%= item.category %></td>
         <td>$<%= item.price %></td>
+        <td><%= item.created_at.strftime("%Y-%m-%d") %></td>
         <td><%= link_to 'View', item, class: 'btn btn-primary' %></td>
         <td><%= link_to 'Edit', edit_item_path(item), class: 'btn btn-primary' %></td>
         <td><%= button_to 'Delete', item, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"%></td>
@@ -41,13 +42,13 @@
 <table class="table table-hover table">
   <thead>
     <tr>
-      <th scope="col"  style="width: 5%">#</th>
-      <th scope="col" style="width: 19%">Title</th>
-      <th scope="col" style="width: 19%">Description</th>
-      <th scope="col" style="width: 19%">Category</th>
-      <th scope="col" style="width: 19%">Price</th>
-      <th colspan="5" style="width: 19%"></th>
-      
+      <th scope="col"  style="width: 4%">#</th>
+      <th scope="col" style="width: 16%">Title</th>
+      <th scope="col" style="width: 16%">Description</th>
+      <th scope="col" style="width: 16%">Category</th>
+      <th scope="col" style="width: 16%">Price</th>
+      <th scope="col" style="width: 16%">Sold On</th>
+      <th colspan="5" style="width: 16%"></th>
     </tr>
   </thead>
   <tbody>
@@ -59,6 +60,7 @@
         <td><%= item.description %></td>
         <td><%= item.category %></td>
         <td>$<%= item.price %></td>
+        <td><%= item.price %></td>
         <td><%= link_to 'View', item, class: 'btn btn-primary float-right' %></td>
 
 
