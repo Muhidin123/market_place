@@ -1,26 +1,33 @@
-<div class="card" style="width: 18rem;">
-  
-  <div class="card-body" data-toggle="modal">
-  <%if @item.photo.attached?%>
-    <%=image_tag @item.photo%>
-  <% end %>
-    <h5 class="card-title"><%= @item.title %></h5>
-    <p class="card-text"><%=@item.description%></p>
-  </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">Price: $<%=@item.price%></li>
-    <li class="list-group-item">Category: <%=@item.category%></li>
-    <li class="list-group-item">Seller: <%= @item.user.first_name%></li>
-  </ul>
-  <div class="card-body">
+<div class="card mb-3" style="max-width: 1200px;">
+  <div class="row no-gutters">
+    <div class="col-auto">
+                <%if @item.photo.attached?%>
+                <%=image_tag(@item.photo, size: '400')%>
+                <%else%>
+                <%= image_tag("https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fproperty.berkeley.edu%2Fsites%2Fdefault%2Ffiles%2Fstyles%2Fpanopoly_image_original%2Fpublic%2FIcon_Items_For_Sale.png%3Fitok%3DV_rIMLoE&f=1&nofb=1", size: 400) %> 
+                <% end %>
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title"><%= @item.title%></h5>
+        <p class="card-text">Description: <%= @item.description%></p>
+        <p class="card-text">Seller Name: <%= @item.user.first_name%></p>
+        <p class="card-text">Seller Contact: <%= @item.user.email%></p>
+        <p class="card-text">Location: <%= @item.user.location %></small></p>
+      </div>
+    </div>
 
-
-    <% if @item.user_id == current_user.id %>
-        <%= link_to 'Edit', edit_item_path(@item), class: "btn btn-outline-success"%> 
-        <%= link_to 'Back', items_path ,class: "btn btn-outline-success" %>
+    <div clas="btn-group">
+        <% if @item.user_id == current_user.id %>
+        <%= link_to 'Back', items_path ,class: "btn btn-primary mr-2 rounded" %>
+        <%= link_to 'Edit', edit_item_path(@item), class: "btn btn-primary mr-2 rounded"%>
+    <%elsif Transaction.all.find_by(item_id: @item.id)%>
+        <%= link_to 'Back', root_path ,class: "btn btn-primary" %>
     <%else%>
-         <%= button_to "Favorite", add_favorite_path, method: :post ,:class => "btn btn-primary", params: { user_id: current_user.id ,item_id: @item.id }%>
-        <%= link_to 'Back', root_path ,class: "btn btn-outline-success" %>
+        <%= button_to "Favorite", add_favorite_path, method: :post ,:class => "btn btn-primary", params: { user_id: current_user.id ,item_id: @item.id }%><br>
+        <%= link_to 'Back', root_path ,class: "btn btn-primary" %>
     <%end%>
+  </div>
+
   </div>
 </div>

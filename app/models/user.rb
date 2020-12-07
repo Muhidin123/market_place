@@ -10,9 +10,7 @@ class User < ApplicationRecord
   has_many :transactions, dependent: :destroy
   has_many :items, dependent: :destroy
   has_many :favorites, dependent: :destroy
-  has_many :purchased_items, through: :transactions, source: :item , dependent: :destroy
-
-
+  has_many :purchased_items, through: :transactions, source: :item, dependent: :destroy
 
   def full_name
     self.first_name + ' ' + self.last_name
