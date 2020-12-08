@@ -2,8 +2,12 @@
 <html lang="en">
 <head>
 </head>
-
 <body>
+
+<style>
+h1 {color: white;}
+</style>
+
 <h1>MarketPlace</h1><br>
 
     <% if @items != nil%>
@@ -13,9 +17,9 @@
         <div class="row no-gutters">
             <div class="col-auto">
                 <%if item.photo.attached?%>
-                <%=image_tag(item.photo, size: '200')%>
+                <%=image_tag(item.photo, size: '300x200')%>
                 <%else%>
-                <%= image_tag("https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fproperty.berkeley.edu%2Fsites%2Fdefault%2Ffiles%2Fstyles%2Fpanopoly_image_original%2Fpublic%2FIcon_Items_For_Sale.png%3Fitok%3DV_rIMLoE&f=1&nofb=1", size: 200) %> 
+                <%= image_tag("https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fproperty.berkeley.edu%2Fsites%2Fdefault%2Ffiles%2Fstyles%2Fpanopoly_image_original%2Fpublic%2FIcon_Items_For_Sale.png%3Fitok%3DV_rIMLoE&f=1&nofb=1", size: '300x200') %> 
                 <% end %>
             </div>
             <div class="col">

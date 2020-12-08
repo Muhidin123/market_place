@@ -1,3 +1,4 @@
+<div class="card px-4">
 <h1>Favorites:</h1>
 
 <%if @user_favorites != nil && !@user_favorites.empty?%>
@@ -6,8 +7,10 @@
       <div class="card">
         <div class="row no-gutters">
             <div class="col-auto">
-                <%if item.photo.attached?%>
-                <%=image_tag(item.photo, size: '200')%>
+               <%if item.photo.attached?%>
+                <%=image_tag(item.photo, size: '300x200')%>
+                <%else%>
+                <%= image_tag("https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fproperty.berkeley.edu%2Fsites%2Fdefault%2Ffiles%2Fstyles%2Fpanopoly_image_original%2Fpublic%2FIcon_Items_For_Sale.png%3Fitok%3DV_rIMLoE&f=1&nofb=1", size: '300x200') %> 
                 <% end %>
             </div>
             <div class="col">
@@ -27,9 +30,9 @@
         <div class="card-footer w-100 text-muted">
             <%= item.category%>, <%= item.user.location%>
         </div>
-  </div>
+        </div><br>
       <% end %>
       <%else%>
-      <h4> No Favorites </h4>  
+      <h5> You haven't liked anything yet! </h5>  
 <% end %>
-
+</div>

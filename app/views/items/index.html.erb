@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Items For Sale:</h1>
-
+<div class="card px-4"><br>
+<h1> Items For Sale:</h1>
 <table class="table table-hover table">
   <thead>
     <tr>
@@ -32,12 +32,13 @@
   </tbody>
 </table>
 
-<%= link_to 'List Another Item', new_item_path ,class: 'btn btn-success'%>
-
+<%= link_to 'List Another Item', new_item_path ,class: 'btn btn-success'%><br>
+</div>
 <br>
 <br>
 <br>
-<h1>Transaction History</h1>
+<div class="card px-4"><br>
+<h1>Transaction History:</h1>
 
 <table class="table table-hover table">
   <thead>
@@ -60,16 +61,14 @@
         <td><%= item.description %></td>
         <td><%= item.category %></td>
         <td>$<%= item.price %></td>
-        <td><%= item.price %></td>
+        <td><%= Transaction.find_by(item_id: item.id).created_at.strftime("%Y-%m-%d") %></td>
         <td><%= link_to 'View', item, class: 'btn btn-primary float-right' %></td>
-
-
       </tr>
         <%i += 1%>
   <%end%>
   </tbody>
 </table>
-
+</div>
 <br>
 
 
