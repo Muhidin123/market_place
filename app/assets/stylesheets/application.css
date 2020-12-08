@@ -2,6 +2,8 @@
  body {
    background-image: url('/assets/logo.png');
    background-size: cover;
+   background-repeat: no-repeat;
+   background-attachment: fixed;
    opacity: 95%;
  }
 
@@ -12,3 +14,5 @@
  .form-control {
    width: 50%;
  }
+
+ a{color: black;}

@@ -1,4 +1,24 @@
-<h2>Log in</h2>
+<style> 
+.text-center h2 {
+  width: 30%;
+  margin-left: 35%;
+}
+#user_email {
+  margin-left: 30%;
+  text-align: center;
+  width: 40%;
+  font-size: 20px;
+}
+#user_password {
+  margin-left: 30%;
+  text-align: center;
+  width: 40%;
+  font-size: 20px;
+}
+</style>
+<div class="card px-4"><br>
+<h2>Log in</h2><br>
+
 <body class="text-center">
   <%= form_for(resource, as: resource_name, url: session_path(resource_name), class: 'form-signin') do |f| %>
   <h1 class="h3 mb-3 font-weight-normal">
@@ -22,5 +42,5 @@
   <% end %>
 <br>
   <%= render "devise/shared/links" %><br>
-  <br>
 </body>
+</div>
