@@ -1,3 +1,4 @@
+<div class="card px-4"><br>
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %><br />
@@ -36,8 +37,6 @@
     <%= f.submit "Update" , class: "btn btn-success mr-2 rounded", data: {confirm: "Are you sure"}%>
 <% end %>
 </div>
-  
-  <br>
   <br>
   <br>
 
@@ -46,4 +45,9 @@
 
 <div class="btn-group">
 <%= button_to "Deactivate", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger mr-2 rounded"%></p>
+
+<br>
+<br>
+<br>
+</div>
 </div>

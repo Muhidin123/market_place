@@ -1,3 +1,4 @@
+<div class="card px-4"><br>
 <% if @transaction.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@transaction.errors.count, "error") %> prohibited this transaction from being saved:</h2>
@@ -11,30 +12,33 @@
   <% end %>
 
 
-<div class="card mb-3" style="max-width: 1200px;">
-  <div class="row no-gutters">
-    <div class="col-auto">
-                <%if @item.photo.attached?%>
-                <%=image_tag(@item.photo, size: '400')%>
-                <%else%>
-                <%= image_tag("https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fproperty.berkeley.edu%2Fsites%2Fdefault%2Ffiles%2Fstyles%2Fpanopoly_image_original%2Fpublic%2FIcon_Items_For_Sale.png%3Fitok%3DV_rIMLoE&f=1&nofb=1", size: 400) %> 
-                <% end %>
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title"><%= @item.title%></h5>
-        <p class="card-text">Description: <%= @item.description%></p>
-        <p class="card-text">Seller Name: <%= @item.user.first_name%></p>
-        <p class="card-text">Seller Contact: <%= @item.user.email%></p>
-        <p class="card-text">Location: <%= @item.user.location %></small></p>
+<section>
+    <div class="card">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card-block px-4"><br>
+            <h4 class="card-title"><%= @item.title%></h4>
+            <p class="card-text">Description: <%= @item.description%></p>
+            <p class="card-text">Seller Name: <%= @item.user.first_name%></p>
+            <p class="card-text">Seller Contact: <%= @item.user.email%></p>
+            <p class="card-text">Location: <%= @item.user.location %></small></p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card-img-bottom ">
+                    <%if @item.photo.attached?%>
+                    <%=image_tag(@item.photo, size: '610x420')%>
+                    <%else%>
+                    <%= image_tag("https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fproperty.berkeley.edu%2Fsites%2Fdefault%2Ffiles%2Fstyles%2Fpanopoly_image_original%2Fpublic%2FIcon_Items_For_Sale.png%3Fitok%3DV_rIMLoE&f=1&nofb=1", size: '610x420') %> 
+                    <% end %>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
+</section><br>
 
-
-
-
+<div class="card px-4"><br>
+<h4> Review Your Experience: </h4>
 <%= form_for @transaction do |f| %>
 <div class="form-group"><br>
   <%= f.text_area :review, class: "form-control", placeholder: "Write a review for this item and a seller"%>
@@ -47,10 +51,10 @@
 <br / >
   <%= link_to 'Back', items_path ,class: "btn btn-primary" %>
   <%= f.submit "Buy this Item" , class: "btn btn-success", params: {id: @item.id}%>
-
 <% end %>
-      </div>
-      <br>
-      <br>
-      <br>
+<br>
+</div>
+<br>
+</div>
+</div>
 </div>
