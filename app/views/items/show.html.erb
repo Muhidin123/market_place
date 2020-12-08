@@ -25,9 +25,12 @@
         <%= link_to 'Back', root_path ,class: "btn btn-primary" %>
     <%else%>
         <%= button_to "Favorite", add_favorite_path, method: :post ,:class => "btn btn-primary", params: { user_id: current_user.id ,item_id: @item.id }%><br>
-        <%= link_to 'Back', root_path ,class: "btn btn-primary" %>
+        <%= link_to 'Back', root_path ,class: "btn btn-primary" %><br>
+        <br>
+        <%= link_to "Buy", new_transaction_path(:item_id => @item.id), class: "btn btn-success mr-2 rounded"%>
     <%end%>
   </div>
 
   </div>
-</div>
+
+  
