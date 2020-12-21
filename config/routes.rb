@@ -10,5 +10,6 @@ Rails.application.routes.draw do
   post '/favorites/new', to: 'favorites#add_favorite', as: 'add_favorite'
   delete '/favorites/:id', to: 'home#destroy', as: 'unfavor_remove'
   post '/transactions/new', to: 'transactions#new_transaction', as: "add_transaction"
+  get 'search' , to: 'home#search'
 
 end

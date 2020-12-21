@@ -1,0 +1,46 @@
+<%%>
+
+<h1> Search query </h1>
+
+<section>
+  <div class="container">
+    <div class="card">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card-block px-4"><br>
+            <h4 class="card-title"><%= @item[0].title%></h4>
+            <p class="card-text">Description: <%= @item[0].description%></p>
+            <p class="card-text">Seller Name: <%= @item[0].user.first_name%></p>
+            <p class="card-text">Seller Contact: <%= @item[0].user.email%></p>
+            <p class="card-text">Location: <%= @item[0].user.location %></small></p>
+            
+                    <div class="btn-group">
+                  <% if @item[0].user_id == current_user.id %>
+                      <%= link_to 'Back', items_path ,class: "btn btn-primary mr-2 rounded" %>
+                      <%= link_to 'Edit', edit_item_path(@item[0]), class: "btn btn-primary mr-2 rounded"%>
+                  <%elsif Transaction.all.find_by(item_id: @item[0].id)%>
+                      <%= link_to 'Back', root_path ,class: "btn btn-primary mr-2 rounded" %>
+                  <%else%>
+                      <%= button_to "Favorite", add_favorite_path, method: :post ,:class => "btn btn-primary mr-2 rounded", params: { user_id: current_user.id ,item_id: @item[0].id }%><br>
+                      <%= link_to 'Back', root_path ,class: "btn btn-primary mr-2 rounded" %>
+                      <%= link_to "Buy", new_transaction_path(:item_id => @item[0].id), class: "btn btn-success mr-2 rounded"%>
+                  <%end%>
+              </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card-img-bottom ">
+                    <%if @item[0].photo.attached?%>
+                    <%=image_tag(@item[0].photo, size: '623x420')%>
+                    <%else%>
+                    <%= image_tag("https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fproperty.berkeley.edu%2Fsites%2Fdefault%2Ffiles%2Fstyles%2Fpanopoly_image_original%2Fpublic%2FIcon_Items_For_Sale.png%3Fitok%3DV_rIMLoE&f=1&nofb=1", size: '623x420') %> 
+                    <% end %>
+          </div>
+        </div>
+      </div>
+     <div class="card-footer w-100 text-muted">
+            MarketPlace 2020
+        </div>
+    </div>
+  </div>
+</section>
